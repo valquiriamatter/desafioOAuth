@@ -1,0 +1,51 @@
+server:
+  port: 8082
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          funcionarios:
+            authorization-grant-type: client_credentials
+            client-id: meus-funcionarios
+            client-secret: K7QTrnhRaMO0N4AjREPtpnzeuNTfk29r
+            scope: funcionarios:read
+        provider:
+          funcionarios:
+            token-uri: http://localhost:8080/realms/funcionarios/protocol/openid-connect/token
+            authorization-uri: http://localhost:8080/realms/funcionarios/protocol/openid-connect/auth
+
+      resourceserver:
+          jwt:
+            issuer-uri: http://localhost:8080/realms/meus-contatos
+
+
+
+logging:
+  level:
+    org.springframework.web.client: DEBUG
+    com.br.funcionariosClient.client.FuncionarioClient: DEBUG
+
+# logs dos heades e body
+
+feign:
+  client:
+    config:
+      funcionarios:
+        loggerLevel: full
+
+#feign:
+#  compression:
+#    request:
+#      enabled: true
+#      mime-types: application/json
+#    response:
+#      enabled: true
+#  client.config.default:
+#    connectTimeout: 1000
+#    readTimeout: 60000
+#    decode404: false
+#    loggerLevel: ${LOG_LEVEL_FEIGN:basic}
+
+
