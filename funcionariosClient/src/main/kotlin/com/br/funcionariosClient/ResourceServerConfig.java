@@ -29,7 +29,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/funcionarios").permitAll()
+                .antMatchers(HttpMethod.GET, "/funcionarios").hasAuthority("SCOPE_contatos:write")
                 //.anyRequest().hasAnyAuthority("SCOPE_funcionarios:write")
                 .and()
                 .oauth2ResourceServer()
