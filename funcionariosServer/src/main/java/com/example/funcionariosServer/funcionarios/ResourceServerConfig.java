@@ -29,11 +29,11 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/funcionarios").hasAuthority("SCOPE_funcionarios:read")
-                .antMatchers(HttpMethod.GET, "/api/funcionarios/**").hasAuthority("SCOPE_funcionarios:read")
-                .antMatchers(HttpMethod.POST, "/api/funcionarios").hasAuthority("SCOPE_funcionarios:write")
-                .antMatchers(HttpMethod.DELETE, "/api/funcionarios").hasAuthority("SCOPE_funcionarios:write")
-                .anyRequest().hasAnyAuthority("SCOPE_funcionarios:write")
+                .antMatchers(HttpMethod.GET, "/api/funcionarios").hasAuthority(Role.READ.value)
+                .antMatchers(HttpMethod.GET, "/api/funcionarios/**").hasAuthority(Role.READ.value)
+                .antMatchers(HttpMethod.POST, "/api/funcionarios").hasAuthority(Role.WRITE.value)
+                .antMatchers(HttpMethod.DELETE, "/api/funcionarios").hasAuthority(Role.WRITE.value)
+                .anyRequest().hasAnyAuthority(Role.WRITE.value)
                 .and()
                 .oauth2ResourceServer()
                 .jwt();
